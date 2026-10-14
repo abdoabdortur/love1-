@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أميرتي بتول</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311026 100%);
+            color: #f3f4f6;
+            min-height: 100vh;
+            direction: rtl;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* أنيميشن تأثير الكتابة السلسة بدون تفكيك الحروف */
+        .typing-container {
+            display: inline-block;
+            overflow: hidden;
+            white-space: pre-line;
+            border-left: 3px solid #f43f5e; /* مؤشر الكتابة */
+            animation: typing 2.5s steps(60, end) forwards, blink 0.75s step-end infinite;
+            max-width: 100%;
+        }
+
+        @keyframes typing {
+            from { max-width: 0; }
+            to { max-width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #f43f5e; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-6">
+
+    <div class="max-w-2xl w-full text-center space-y-8 my-auto">
+        
+        <!-- أيقونة القلب والتاج -->
+        <div class="inline-block p-4 rounded-full glass-card animate-pulse shadow-lg">
+            <svg class="w-12 h-12 text-rose-400 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+
+        <!-- العنوان الرئيسي -->
+        <h1 class="text-4xl md:text-5xl font-bold tracking-wide text-rose-200">
+            إلى أميرتي بتول 👑
+        </h1>
+
+        <!-- مربع الرسالة -->
+        <div class="glass-card p-8 rounded-2xl shadow-2xl relative overflow-hidden min-h-[160px] flex items-center justify-center">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+            
+            <div id="message-box" class="w-full text-center">
+                <span id="message-text" class="text-lg md:text-xl text-gray-100 leading-relaxed font-normal typing-container"></span>
+            </div>
+        </div>
+
+        <!-- الأزرار -->
+        <div class="flex flex-wrap justify-center gap-4">
+            <button onclick="changeMessage(0)" class="px-6 py-2.5 rounded-xl glass-card hover:bg-rose-500/20 transition-all text-sm font-medium border border-rose-500/30">
+                همسة حب
+            </button>
+            <button onclick="changeMessage(1)" class="px-6 py-2.5 rounded-xl glass-card hover:bg-rose-500/20 transition-all text-sm font-medium border border-rose-500/30">
+                بيت شعر
+            </button>
+            <button onclick="changeMessage(2)" class="px-6 py-2.5 rounded-xl glass-card hover:bg-rose-500/20 transition-all text-sm font-medium border border-rose-500/30">
+                أمنيتي لكِ
+            </button>
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <footer class="text-xs text-gray-400 pt-8">
+            صُنع بحب خصيصاً لأجمل أميرة.. بتول 🤍
+        </footer>
+    </div>
+
+    <script>
+        const messages = [
+            "يا أميرتي بتول، وجودكِ في حياتي يجعل كل الأيام أجمَل وأجمل. أنتِ السر اللطيف الذي يملأ قلبي بالدفء والدلال.",
+            "وَإِنّي لَأَهوى النَومَ في غَيرِ حينِهِ.. لَعَلَّ لِقاءً في المَنامِ يَكونُ\nدمتِ لي أجمل ما أملك يا بتول.",
+            "أتمنى لكِ دائماً ابتسامة لا تغيب، وقلباً لا يعرف إلا الفرح، وأن تظلي دائماً نوري وأميرتي المفضلّة."
+        ];
+
+        function changeMessage(index) {
+            const messageElement = document.getElementById('message-text');
+            
+            // إعادة تشغيل الأنيميشن عند تغيير النص
+            messageElement.classList.remove('typing-container');
+            void messageElement.offsetWidth; // Trigger reflow
+            messageElement.innerText = messages[index];
+            messageElement.classList.add('typing-container');
+        }
+
+        window.onload = () => {
+            changeMessage(0);
+        };
+    </script>
+</body>
+</html>
